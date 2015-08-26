@@ -216,3 +216,21 @@ table {
     display:none;
 }
 
+
+
+
+#vue-grand-voile, #vue-grand-descr, #vue-grand-fermer{
+  opacity:0;
+  visibility: hidden;
+}
+#vue-grand-voile, #vue-grand, #vue-grand-descr, #vue-grand-fermer{
+  position:fixed;
+}
+#vue-grand-voile, #vue-grand{
+  top:0;left:0;
+}
+
+#anim-wrapper, #anim-rond{
+  position:absolute;
+  pointer-events: none;
+}

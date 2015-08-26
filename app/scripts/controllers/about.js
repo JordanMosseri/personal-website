@@ -9,40 +9,8 @@
  */
 angular.module('ajs5BisApp')
   .controller('AboutCtrl', function ($scope) {
-    this.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
 
     $scope.iconsSize = 'fa-lg';
-
-
-
-
-    function startsWith(mot, debut){
-      var length = debut.length;
-      return (substr(mot, 0, length) === debut);
-    }
-
-    function recup_auto(chemin_dossier){
-      var arr = [];
-
-      if(!is_dir(chemin_dossier))
-        return null;
-
-      var dossier = opendir(chemin_dossier);
-      var fichier;
-      while (false !== (fichier = readdir(dossier))) {
-        if (fichier != '.' && fichier != '..' && fichier != 'index.php' && !startsWith(fichier, '.')) {
-          arr.push( array(chemin_dossier + fichier, 'description test') );
-        }
-      }
-
-      closedir(dossier);
-
-      return arr;
-    }
 
     function recup(chemin_dossier){
       var descr_audi = 'Modelisation-texturage-rendu avec Blender 3D - Projet personnel';
@@ -51,23 +19,42 @@ angular.module('ajs5BisApp')
       var descr_nolarsen = 'App iPhone - Seul executant pour une association';
       return [
         [chemin_dossier + 'audi (1).jpg', descr_audi],
-      [chemin_dossier + 'audi (2).jpg', descr_audi],
-      [chemin_dossier + 'audi (3).jpg', descr_audi],
-      [chemin_dossier + 'audi (4).jpg', descr_audi],
-      [chemin_dossier + 'bmw (1).jpg', descr_bmw],
-      [chemin_dossier + 'bmw (2).jpg', descr_bmw],
-      [chemin_dossier + 'esesame (1).jpg', descr_esesame],
-      [chemin_dossier + 'esesame (2).jpg', descr_esesame],
-      [chemin_dossier + 'esesame (3).jpg', descr_esesame],
-      [chemin_dossier + 'esesame (4).jpg', 'Logo sous Photoshop pour l\'app Android'],
-      [chemin_dossier + 'nolarsen (4).jpg', descr_nolarsen],
-      [chemin_dossier + 'nolarsen (1).jpg', descr_nolarsen],
-      [chemin_dossier + 'nolarsen (2).jpg', descr_nolarsen],
-      [chemin_dossier + 'nolarsen (3).jpg', descr_nolarsen]
+        [chemin_dossier + 'audi (2).jpg', descr_audi],
+        [chemin_dossier + 'audi (3).jpg', descr_audi],
+        [chemin_dossier + 'audi (4).jpg', descr_audi],
+        [chemin_dossier + 'bmw (1).jpg', descr_bmw],
+        [chemin_dossier + 'bmw (2).jpg', descr_bmw],
+        [chemin_dossier + 'esesame (1).jpg', descr_esesame],
+        [chemin_dossier + 'esesame (2).jpg', descr_esesame],
+        [chemin_dossier + 'esesame (3).jpg', descr_esesame],
+        [chemin_dossier + 'esesame (4).jpg', 'Logo sous Photoshop pour l\'app Android'],
+        [chemin_dossier + 'nolarsen (4).jpg', descr_nolarsen],
+        [chemin_dossier + 'nolarsen (1).jpg', descr_nolarsen],
+        [chemin_dossier + 'nolarsen (2).jpg', descr_nolarsen],
+        [chemin_dossier + 'nolarsen (3).jpg', descr_nolarsen]
       ];
     }
 
     $scope.$arr = recup("images/Images/miniatures/");
 
+    $scope.model = {
+      name: 'Jordan Mosseri.',
+      degree: 'Ingénieur en Systèmes d\'Information.',
+      descr: 'Je suis passionné de nouvelles technologies, en particulier dans le domaine du web et du mobile.'+
+      'Créatif, je porte une attention particulière à l\'ergonomie et à l\'experience utilisateur.'+
+        'Mes différents stages et projets m\'ont permis de développer mon autonomie et ma capacité d\'adaptation.'+
+      'Je travaille actuellement sur un projet dans lequel je développe une application Android.'+
+      'Je recherche un stage de 6 mois à partir de février 2015, me contacter pour plus d\'infos.'
+    };
+
+    function NewSkillsGroup(icon, title, content) {
+      return {icon: icon, title: title, content: content};
+    }
+
+    $scope.skills = [
+      NewSkillsGroup('fa-mobile', 'Mobile', ['Android', 'iOS']),
+      NewSkillsGroup('fa-globe', 'Web', ['AngularJS', 'jQuery', 'PHP', 'JEE', 'Joomla']),
+      NewSkillsGroup('fa-cube', 'Infographisme', ['Blender 3D', 'Photoshop'])
+    ];
 
   });

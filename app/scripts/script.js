@@ -13,6 +13,8 @@ var seuil_accepted_anim_debut = 50;
 
 var scroll_changed_pdt_vueGrand = false;
 
+var couleur_base_text_cv;
+
 /*
  * Inutilisé
  */
@@ -22,21 +24,21 @@ function getImgSize(imgSrc, callback){
     var width;
     var newImg = new Image();
     //newImg.onload = callback;
-    
+
     p = $(newImg).ready(function(){
         return {width: newImg.width, height: newImg.height};
     });
     //alert (p[0]['width']+" "+p[0]['height']);
-    
+
     $(newImg).load(function(){
         height_grand = newImg.height;
         width_grand = newImg.width;
         //alert(width + '\n' + height);
-        
+
         callback();
     });
     newImg.src = imgSrc;
-    
+
     //return {width: wi, height: newImg.height};
 }
 
@@ -72,16 +74,16 @@ function animer_voile_debut(duree){
     }, duree, function(){
         $('#voile-anim-debut').css('display','none');
     });
-    
+
 }
 
 $(window).load(function(){
-        
+
     if( $(window).scrollTop()<seuil_accepted_anim_debut ){
         var y_init = -$("#inside-1").outerHeight()-70;
         var duree1 = 1700;
         var delta = 400;
-        
+
         animer_voile_debut(2800);
 
         animer_header("#inside-1 p", y_init, duree1);
@@ -92,16 +94,17 @@ $(window).load(function(){
     }
     else{
         animer_voile_debut(500);
-        
+
+        couleur_base_text_cv = $('.curriculum-vitae').css('color');
         pret();
     }
 });
 
 function pret(){
     positionner_bg_parallax();
-    
+
     $('.conteneur-images a').removeAttr('href');
-    
+
     /*
      * Agrandit les images sur clic
      */
@@ -338,13 +341,12 @@ function pret(){
             }, duree_animation, function() {
         });
     });
-    
+
     $('#lien-cv-test-parallax').mouseenter(function(){
         $('.curriculum-vitae').css('color','orange');
     }).mouseleave(function(){
         $('.curriculum-vitae').css('color',couleur_base_text_cv);
     });
 }
-var couleur_base_text_cv = $('.curriculum-vitae').css('color');
 
-            
+
