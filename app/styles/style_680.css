@@ -1,0 +1,7 @@
+
+.afficher_en_mobile{
+	display:block;
+}
+.ne_pas_afficher_en_mobile, .ne_pas_afficher_en_mobile *{
+	display:none;
+}

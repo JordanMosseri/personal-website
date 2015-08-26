@@ -1,1 +1,170 @@
-<p>This is the about view.</p>
+
+
+<div class="centrer fond-bleu" id="fonfonfond" style="background: url('images/fond_haut.jpg') center center;">
+  <div class="inside" id="inside-1">
+    <p><a href="." id="lien-logo-header"><img style="border-radius: 50%;" src='images/jm4_export.png' height="100"/></a></p>
+    <h1 class="">Jordan Mosseri.</h1>
+    <h2 class="">Ingénieur en Systèmes d'Information.</h2>
+  </div>
+</div>
+
+<div class="centrer fond-clair" id="partie-2">
+  <div class="inside">
+
+    <p style="color:#eee;text-align: right;font-style: italic;font-size: 0.7em;
+               margin:0;/*margin-top:-90px;*/position:relative;top:-90px;display:block;
+               ">
+      Site en cours de développement. Dernière mise à jour le 30/11/2014.
+      <a href="../corps/Apropos.php">Ancienne version</a>
+    </p>
+
+    <h2>Quelques mots</h2>
+    <p style="text-align: justify; text-indent: 20px;">
+      Je suis passionné de nouvelles technologies, en particulier dans le domaine du web et du mobile.
+      Créatif, je porte une attention particulière à l'ergonomie et à l'experience utilisateur.
+      Mes différents stages et projets m'ont permis de développer mon autonomie et ma capacité d'adaptation.
+      Je travaille actuellement sur un projet dans lequel je développe une application Android.
+      Je recherche un stage de 6 mois à partir de février 2015, me contacter pour plus d'infos.
+    </p>
+    <table id="table-specialites">
+      <tr>
+        <td>
+          <i class="fa fa-mobile {{iconsSize}}"></i><h3>Mobile</h3>
+        </td>
+        <td>
+          <i class="fa fa-globe {{iconsSize}}"></i><h3>Web</h3>
+        </td>
+        <td>
+          <i class="fa fa-cube {{iconsSize}}"></i><h3>Infographisme</h3>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <ul>
+            <li>Android</li> <li>iOS</li>
+          </ul>
+        </td>
+        <td>
+          <ul>
+            <li>Standards</li> <li>jQuery</li> <li>PHP</li> <li>JEE</li> <li>Joomla</li>
+          </ul>
+        </td>
+        <td>
+          <ul>
+            <li>Blender 3D</li> <li>Photoshop</li>
+          </ul>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+<div class="centrer" id="div-images-gallerie-projets"><!-- cdd7ee -->
+  <div class="inside">
+    <h2 class="">Véhiculer des images</h2>
+    <p class="conteneur-images">
+
+      <span ng-repeat="$value in $arr" href="{{$value[0].replace('miniatures', 'grandes')}}" style="display:inline-block; background: black; height:125px;line-height:125px;">
+        <img class="cliquable-a-agrandir" src="{{$value[0]}}"/>
+        <span style="display:none;">{{$value[1]}}</span>
+      </span>
+
+    </p>
+  </div>
+</div>
+
+<div class="centrer fond-clair" id="fonfonfond2" style="/*background: url('CV-MOSSERI_blur.jpg') center top no-repeat;background-size: contain;*/">
+  <div class="inside">
+    <h2>Déroulement de la vie</h2>
+    <!--<p><a href="CV-MOSSERI.jpg" target="_blank"><img class="" id="preview-cv" src="CV-MOSSERI_mini.png"/></a></p>-->
+
+    <p>
+    <table id="table-cv" class="ne_pas_afficher_en_mobile">
+      <tr>
+        <td>
+          <!--<a href="CV-MOSSERI.jpg" target="_blank" class="lien-arrondi" style="width:150px;height:150px;line-height: 150px;background:#fa0;font-size: 2.2em;">CV</a>-->
+          <p class="curriculum-vitae" style="text-align: right;">Curriculum</p>
+        </td>
+        <td>
+          <a href="images/CV-MOSSERI.jpg" target="_blank" id="lien-cv-test-parallax" style="" ></a>
+        </td>
+        <td>
+          <!--<a class="lien-arrondi" style="width:80px;height:80px;line-height: 80px;background:#fa0;font-size: 1.5em; opacity:0.7;" href="CV-MOSSERI.pdf" target="_blank">PDF</a>-->
+          <p class="curriculum-vitae" style="text-align: left;">Vitae</p>
+        </td>
+      </tr>
+    </table>
+    </p>
+    <p class="afficher_en_mobile">
+      <a href="images/CV-MOSSERI.jpg" target="_blank" id="" style="" ><img src="images/CV-MOSSERI_gris_mobile.png"/></a>
+    </p>
+
+  </div>
+</div>
+
+<div class="centrer" style="background: #fff;">
+  <div class="inside">
+    <h2 class="">Ils m'ont fait confiance</h2>
+    <p>
+    <table id="table-confiance">
+      <tr>
+        <td><img src="images/confiance/logo-ece.png"/></td>
+        <td><img src="images/confiance/logo-No-Larsen.jpg" style="max-height: 75px;"/></td>
+        <td><img src="images/confiance/logo_naxis.png"/></td>
+      </tr>
+    </table>
+    </p>
+  </div>
+</div>
+
+<div class="centrer fond-bleu" style="padding:20px;">
+  <div class="inside">
+    <p style="font-style: italic;margin:0;">
+      Jordan Mosseri &copy; Tous droits réservés
+                <span id="icones-footer">
+                    <a id="lienIn" href="http://fr.linkedin.com/pub/jordan-mosseri/63/170/7b5" target="_blank"><img src="images/blank.png" alt="logo_in" /></a>
+                    <!-- http://www.linkedin.com/profile/view?id=224343929 -->
+                    <a id="lienContact" href="mailto:mosseri@ece.fr"><img src="images/blank.png" alt="icon mail" /></a>
+                </span>
+    </p>
+  </div>
+</div>
+
+
+<noscript>
+  <style>
+    #voile-anim-debut{
+      display: none;
+    }
+  </style>
+</noscript>
+<style>
+  #vue-grand-voile, #vue-grand-descr, #vue-grand-fermer{
+    opacity:0;
+    visibility: hidden;
+  }
+  #vue-grand-voile, #vue-grand, #vue-grand-descr, #vue-grand-fermer{
+    position:fixed;
+  }
+  #vue-grand-voile, #vue-grand{
+    top:0;left:0;
+  }
+
+  #anim-wrapper, #anim-rond{
+    position:absolute;
+    pointer-events: none;
+  }
+</style>
+<div id="vue-grand-voile" style="width: 100%;height:100%;background: black;"></div>
+<img id="vue-grand" src="pic.jpg" style=""/>
+<p id="vue-grand-descr" style="bottom:0;left:0;color:#fff;text-align: center;width:100%;font-size: 0.9em;">DESCR TEST</p>
+<p id="vue-grand-fermer" style="top:0;right:0;color:orange;text-align: right;/*width:100%;*/font-size: 0.7em;font-style: italic;">Cliquez n'importe où pour fermer</p>
+
+<p id="p-log" style="position:fixed;top:0;left:0;background:white;color:#333; visibility: hidden;">Log</p>
+
+<div id="anim-wrapper" style=" overflow: hidden; /*background: #777;*/ opacity:0.20;">
+  <div id="anim-rond" style="background:#fff; border-radius:50%;"></div><!--fc9-->
+</div>
+
+<div class="fond-bleu" id='voile-anim-debut' style="position:fixed;top:0;left:0;width: 100%;height:100%;opacity: 0;"></div>
+
