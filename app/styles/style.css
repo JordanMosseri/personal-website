@@ -129,7 +129,7 @@ table {
 
 
 .conteneur-images{
-    text-align: center;
+    text-align: left;
 }
 .conteneur-images img{
     -webkit-transition: opacity 0.5s ease;

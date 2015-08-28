@@ -1,4 +1,20 @@
 
+<div id="first-screen-wrapper" style="width: 100%;">
+    <div id="fond-persistant"></div>
+    <div id="div-arrondi"></div>
+    <div id="content-front">
+        <span class="helper"></span>
+        <img id="imggggggggg" src="images/jm4_export.png" height="{{IMG_HEIGHT}}">
+
+        <div id="texttitlenextgen">
+            <h1>{{model.name}}</h1>
+            <h2>{{model.degree}}</h2>
+        </div>
+
+    </div>
+</div>
+
+
 
 <div class="centrer fond-bleu" id="fonfonfond" style="background: url('images/fond_haut.jpg') center center;">
   <div class="inside" id="inside-1">
@@ -46,10 +62,10 @@
     <h2 class="">Véhiculer des images</h2>
     <p class="conteneur-images">
 
-      <span ng-repeat="$value in $arr" href="{{$value[0].replace('miniatures', 'grandes')}}" style="display:inline-block; background: black; height:125px;line-height:125px;">
+      <a ng-repeat="$value in $arr" href="{{$value[0].replace('miniatures', 'grandes')}}" style="display:inline-block; background: black; height:125px;line-height:125px;">
         <img class="cliquable-a-agrandir" src="{{$value[0]}}"/>
         <span style="display:none;">{{$value[1]}}</span>
-      </span>
+      </a>
 
     </p>
   </div>

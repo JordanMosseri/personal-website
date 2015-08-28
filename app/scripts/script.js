@@ -15,33 +15,6 @@ var scroll_changed_pdt_vueGrand = false;
 
 var couleur_base_text_cv;
 
-/*
- * Inutilisé
- */
-            //getImgSize($(this).attr('src').replace('miniatures','grandes'), function(){});
-function getImgSize(imgSrc, callback){
-    var height;
-    var width;
-    var newImg = new Image();
-    //newImg.onload = callback;
-
-    p = $(newImg).ready(function(){
-        return {width: newImg.width, height: newImg.height};
-    });
-    //alert (p[0]['width']+" "+p[0]['height']);
-
-    $(newImg).load(function(){
-        height_grand = newImg.height;
-        width_grand = newImg.width;
-        //alert(width + '\n' + height);
-
-        callback();
-    });
-    newImg.src = imgSrc;
-
-    //return {width: wi, height: newImg.height};
-}
-
 
 
 function positionner_bg_parallax(){
@@ -78,7 +51,9 @@ function animer_voile_debut(duree){
 }
 
 $(window).load(function(){
+    return;
 
+    couleur_base_text_cv = $('.curriculum-vitae').css('color');
     if( $(window).scrollTop()<seuil_accepted_anim_debut ){
         var y_init = -$("#inside-1").outerHeight()-70;
         var duree1 = 1700;
@@ -95,7 +70,6 @@ $(window).load(function(){
     else{
         animer_voile_debut(500);
 
-        couleur_base_text_cv = $('.curriculum-vitae').css('color');
         pret();
     }
 });
