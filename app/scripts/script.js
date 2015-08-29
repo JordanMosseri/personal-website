@@ -9,8 +9,6 @@ var width_miniature;
 var width_grand;
 var height_grand;
 
-var seuil_accepted_anim_debut = 50;
-
 var scroll_changed_pdt_vueGrand = false;
 
 var couleur_base_text_cv;
@@ -24,57 +22,22 @@ function positionner_bg_parallax(){
     ) +'px');
 }
 
-function animer_header(element, y_init, duree){
-    $(element).css('position','relative');
-    $(element).css('top',y_init);
-    $(element).delay(800).animate({
-        top:0+'px'
-        }, duree, 'easeOutQuint', function() {
-    });
-}
-function animer_reste(){
-    $("#partie-2").css('margin-top',$(window).height()-$("#partie-2").offset().top+seuil_accepted_anim_debut);
-    $("#partie-2").delay(1150).animate({
-        "margin-top": 0+'px'
-        }, 1700, 'easeOutQuint', function() {
-            pret();
-    });
-}
 
-function animer_voile_debut(duree){
-    $('#voile-anim-debut').animate({
-        opacity:0
-    }, duree, function(){
-        $('#voile-anim-debut').css('display','none');
-    });
-
-}
+var $cliquableAAgrandir = $('.cliquable-a-agrandir');
+//var $vueGrand = $('#vue-grand');
+var $vueGrandVoile = $('#vue-grand-voile');
+var $vueGrandDescr = $('#vue-grand-descr');
+var $vueGrandFermer = $('#vue-grand-fermer');
+var $animWrapper = $('#anim-wrapper');
+var $animRond = $('#anim-rond');
 
 $(window).load(function(){
-    return;
-
-    couleur_base_text_cv = $('.curriculum-vitae').css('color');
-    if( $(window).scrollTop()<seuil_accepted_anim_debut ){
-        var y_init = -$("#inside-1").outerHeight()-70;
-        var duree1 = 1700;
-        var delta = 400;
-
-        animer_voile_debut(2800);
-
-        animer_header("#inside-1 p", y_init, duree1);
-        animer_header("#inside-1 h1", y_init, duree1-delta);
-        animer_header("#inside-1 h2", y_init, duree1-delta*2);
-
-        animer_reste();
-    }
-    else{
-        animer_voile_debut(500);
-
-        pret();
-    }
+    pret();
 });
 
 function pret(){
+    couleur_base_text_cv = $('.curriculum-vitae').css('color');
+
     positionner_bg_parallax();
 
     $('.conteneur-images a').removeAttr('href');
@@ -82,7 +45,7 @@ function pret(){
     /*
      * Agrandit les images sur clic
      */
-    $('.cliquable-a-agrandir').click(function() {
+    $cliquableAAgrandir.click(function() {
 
         scroll_changed_pdt_vueGrand = false;
 
@@ -115,16 +78,16 @@ function pret(){
             width_grand = newImg.width;
 
             $('#vue-grand').remove();
-            $('#vue-grand-voile').after(newImg);
-            $('#vue-grand-voile').next().attr('id','vue-grand');
+            $vueGrandVoile.after(newImg);
+            $vueGrandVoile.next().attr('id','vue-grand');
             //return;
 
             /*
              * Description sous l'image
              */
-            $('#vue-grand-descr').html( texte_descr );
-            $('#vue-grand-descr').css('visibility','visible');
-            $( "#vue-grand-descr" ).animate({
+            $vueGrandDescr.html( texte_descr );
+            $vueGrandDescr.css('visibility','visible');
+            $vueGrandDescr.animate({
                     opacity: 1
                 }, duree_animation, function() {
             });
@@ -132,8 +95,8 @@ function pret(){
             /*
              * Fermer
              */
-            $('#vue-grand-fermer').css('visibility','visible');
-            $( "#vue-grand-fermer" ).animate({
+            $vueGrandFermer.css('visibility','visible');
+            $vueGrandFermer.animate({
                     opacity: 1
                 }, duree_animation, function() {
             });
@@ -141,8 +104,8 @@ function pret(){
             /*
              * Vue voile
              */
-            $('#vue-grand-voile').css('visibility','visible');
-            $( "#vue-grand-voile" ).animate({
+            $vueGrandVoile.css('visibility','visible');
+            $vueGrandVoile.animate({
                     opacity: 0.9
                 }, duree_animation, function() {
             });
@@ -189,17 +152,17 @@ function pret(){
             /*
              * Positionne le texte Fermer en fonction de la position de la grande image
              */
-            $('#vue-grand-fermer').css('visibility','visible');
-            var w_fermer = $('#vue-grand-fermer').width();
-            $('#vue-grand-fermer').css('right','initial');
-            $('#vue-grand-fermer').css('left',lfinal + width_grand-w_fermer);
+            $vueGrandFermer.css('visibility','visible');
+            var w_fermer = $vueGrandFermer.width();
+            $vueGrandFermer.css('right','initial');
+            $vueGrandFermer.css('left',lfinal + width_grand-w_fermer);
 
             /*
              * Lance l'anim
              */
             $('#vue-grand').css('visibility','visible');
-            $( "#vue-grand" ).css('opacity','1');
-            $( "#vue-grand" ).delay(duree_animation/4).animate({
+            $('#vue-grand').css('opacity','1');
+            $('#vue-grand').delay(duree_animation/4).animate({
                     width: width_grand+'px',
                     height: height_grand+'px',
                     left: lfinal + 'px',
@@ -224,17 +187,17 @@ function pret(){
                     opacity: 0
                 }, duree_animation, function() {
                 $( "#vue-grand-voile" ).css('visibility','hidden');
-                $('#vue-grand-descr').css('visibility','hidden');
-                $('#vue-grand-fermer').css('visibility','hidden');
+                $vueGrandDescr.css('visibility','hidden');
+                $vueGrandFermer.css('visibility','hidden');
             });
-            $( "#vue-grand" ).animate({
+            $('#vue-grand').animate({
                    opacity: scroll_changed_pdt_vueGrand?0:1,
                     left:left_miniature,    //$("#vue-grand").offset().left-agrandissement,//0,
                     top:top_miniature,      //$("#vue-grand").offset().top-agrandissement,//$(document).scrollTop(),
                     width:width_miniature,  //$("#vue-grand").width()+agrandissement*2,//$(window).width(),
                     height:height_miniature //$("#vue-grand").height()+agrandissement*2//$(window).height()
                 }, duree_animation, function() {
-                    $( "#vue-grand" ).css('visibility','hidden');
+                    $('#vue-grand').css('visibility','hidden');
             });
             /*$( "#vue-grand" ).delay(duree_animation-600).animate({
                 opacity: 0
@@ -255,9 +218,6 @@ function pret(){
         //bouge les elements html
         //$( "#div-fixe" ).css( "top", -$(window).scrollTop()*0.75);
 
-        //$("#p-log").html(($(window).scrollTop()+$(window).height())+"<br/>"+$("#lien-cv-test-parallax").offset().top);
-        //$("#p-log").html( $(window).scrollTop() );
-
         //bouge le fond
         //$( "#fonfonfond" ).css( "background-position", "center "+($(window).scrollTop()*0.3)+"px");
         //$( "#fonfonfond2" ).css( "background-position", "center "+(($(window).scrollTop())*0.3)+"px");
@@ -265,10 +225,10 @@ function pret(){
         positionner_bg_parallax();
     });
 
-    $('#anim-rond').css('opacity',0);
+    $animRond.css('opacity',0);
     var left_miniature_sauvg, top_miniature_sauvg;
     var rayon=35;
-    $('.cliquable-a-agrandir').mouseenter(function(e){
+    $cliquableAAgrandir.mouseenter(function(e){
         var top_miniature = $(this).offset().top,
         left_miniature = $(this).offset().left,
         height_miniature = parseInt($(this).css('height').replace('px', '')),
@@ -277,19 +237,19 @@ function pret(){
         top_miniature_sauvg = top_miniature;
 
         var xinit = width_miniature/2, yinit = height_miniature/2;
-        xinit = e.pageX - left_miniature, yinit = e.pageY - top_miniature;
+        xinit = e.pageX - left_miniature; yinit = e.pageY - top_miniature;
 
-        $('#anim-wrapper').css('left',left_miniature+'px');
-        $('#anim-wrapper').css('top',top_miniature+'px');
-        $('#anim-wrapper').css('width',width_miniature+'px');
-        $('#anim-wrapper').css('height',height_miniature+'px');
+        $animWrapper.css('left',left_miniature+'px');
+        $animWrapper.css('top',top_miniature+'px');
+        $animWrapper.css('width',width_miniature+'px');
+        $animWrapper.css('height',height_miniature+'px');
 
-        $('#anim-rond').css('left',xinit-rayon+'px');
-        $('#anim-rond').css('top',yinit-rayon+'px');
-        $('#anim-rond').css('width',rayon*2+'px');
-        $('#anim-rond').css('height',rayon*2+'px');
+        $animRond.css('left',xinit-rayon+'px');
+        $animRond.css('top',yinit-rayon+'px');
+        $animRond.css('width',rayon*2+'px');
+        $animRond.css('height',rayon*2+'px');
 
-        $('#anim-rond').stop().animate({
+        $animRond.stop().animate({
             left: -height_miniature+'px',
             top: -height_miniature+'px',
             width: (height_miniature*3) + 'px',
@@ -297,16 +257,16 @@ function pret(){
             opacity:1
             }, duree_animation, function() {
         });
-        /*$('#anim-rond').animate({
+        /*$aniRond.animate({
             opacity:1
             }, duree_animation*0.1, "easeInOutExpo", function() {
         });*/
     });
-    $('.cliquable-a-agrandir').mouseleave(function(e){
+    $cliquableAAgrandir.mouseleave(function(e){
 
         var xinit = e.pageX - left_miniature_sauvg, yinit = e.pageY - top_miniature_sauvg;
 
-        $('#anim-rond').stop().animate({
+        $animRond.stop().animate({
             left: xinit-rayon+'px',
             top: yinit-rayon+'px',
             width: rayon*2 + 'px',
@@ -316,11 +276,6 @@ function pret(){
         });
     });
 
-    $('#lien-cv-test-parallax').mouseenter(function(){
-        $('.curriculum-vitae').css('color','orange');
-    }).mouseleave(function(){
-        $('.curriculum-vitae').css('color',couleur_base_text_cv);
-    });
 }
 
 

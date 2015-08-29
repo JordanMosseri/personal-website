@@ -1,14 +1,20 @@
 'use strict';
 
+/*
+ TODO cv hover en degrade
+ TODO fix gallerie
+ */
+
 /**
  * @ngdoc function
  * @name ajs5BisApp.controller:AboutCtrl
+ * @author Jordan Mosseri
  * @description
  * # AboutCtrl
  * Controller of the ajs5BisApp
  */
 angular.module('ajs5BisApp')
-	.controller('AboutCtrl', function ($scope) {
+	.controller('AboutCtrl', function ($scope, OpeningService) {
 
 		$scope.iconsSize = 'fa-lg';
 
@@ -56,74 +62,24 @@ angular.module('ajs5BisApp')
 			new_SkillsGroup('fa-globe', 'Web', ['AngularJS', 'jQuery', 'PHP', 'JEE', 'Joomla']),
 			new_SkillsGroup('fa-cube', 'Infographisme', ['Blender 3D', 'Photoshop'])
 		];
+		
+		OpeningService.runWhenReady();
 
-		//---------------
-
-		//declaration des constantes
-		$scope.IMG_HEIGHT = 100;
-		var SIDE_INIT;
-		var HEIGHT;
-		var WIDTH;
-		var DURATIONS = {
-			DELAI_INIT: 1000,
-			FRONT_FADEIN: 1000,
-			FRONT_OFFSET: 1000,
-			DIV_ARRONDI: 1250
-		};
-		//$scope.divArrondiDuration = DURATIONS.DIV_ARRONDI / 1000;
-
-		angular.element(document).ready(function() {
-			//initialisation des constantes
-			//document.documentElement.clientWidth
-			HEIGHT = Math.max(window.innerHeight);
-			WIDTH = Math.max(window.innerWidth);
-			//SIDE_INIT = Math.max(WIDTH, HEIGHT) * 1.5;
-			SIDE_INIT = Math.sqrt(WIDTH*WIDTH + HEIGHT*HEIGHT);
-
-			$('#first-screen-wrapper').css('height', HEIGHT);
-
-			//initialisation du div-arrondi
-			maj($scope, SIDE_INIT);
-
-			setTimeout(function() {
-				//positionne au milieu
-				var shouldBe = WIDTH/2 - $scope.IMG_HEIGHT/2;
-				//document.getElementById('imggggggggg').getBoundingClientRect().left
-				//- $(window).scrollLeft()
-				var actualLeftOffset = $('#imggggggggg').offset().left;
-				$('#imggggggggg, #texttitlenextgen').css('left', '+='+(shouldBe-actualLeftOffset));
-
-				//fadein du front
-				$('#content-front').animate({opacity: 1}, DURATIONS.FRONT_FADEIN, function() {
-
-					//reduit le div-arrondi
-					//transition-timing-function: cubic-bezier(.21,.48,.48,.89);/*.64,.13,.9,.55*/
-					$('#div-arrondi').animate({
-						width: 0,
-						height: 0,
-						left: WIDTH/2,
-						top: HEIGHT/2
-					}, DURATIONS.DIV_ARRONDI);
-
-					setTimeout(function() {
-
-						//decalage a gauche du tout
-						$('#imggggggggg, #texttitlenextgen').animate({left: '-=200'}, DURATIONS.FRONT_OFFSET);
-
-						//apparition du texte
-						$('#texttitlenextgen *').animate({left: '0%'}, DURATIONS.FRONT_OFFSET, function() {
-						});
-					}, DURATIONS.DIV_ARRONDI);//$('#div-arrondi').css('transition-duration')
-				});
-			}, DURATIONS.DELAI_INIT);
-
+		$('#lien-cv-test-parallax').mouseenter(function(){
+			$('.curriculum-vitae').css('color','orange');
+		}).mouseleave(function(){
+			$('.curriculum-vitae').css('color',couleur_base_text_cv);
 		});
 
-		function maj($scope, side) {
-			$('#div-arrondi').css('width', side);
-			$('#div-arrondi').css('height', side);
-			$('#div-arrondi').css('left', -(side - WIDTH) / 2);
-			$('#div-arrondi').css('top', -(side - HEIGHT) / 2);
+		//--------------------
+
+		function positionner_bg_parallax() {
+			$('#content-front').css('top', $(window).scrollTop() * 0.25);
 		}
 
+		positionner_bg_parallax();
+
+		$(window).scroll(function() {
+			positionner_bg_parallax();
+		});
 	});

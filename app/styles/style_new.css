@@ -1,14 +1,17 @@
 #fond-persistant {
-    z-index: 49; position: absolute;
+    //z-index: 49;
+    position: absolute;
     left: 0; top: 0; width: 100%; height: 100%;
     background: #697daf;
 }
 #div-arrondi {
-    z-index: 50; position: absolute; border-radius: 50%; background: #E8E8E8;
+    //z-index: 50;
+    position: absolute; border-radius: 50%; background: #E8E8E8;
 }
 #content-front {
     opacity: 0;
-    z-index: 51; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    //z-index: 51;
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
     text-align: center;
 //background: url('images/jm4_export.png') no-repeat center transparent; background-size: 100px;
 }
@@ -33,3 +36,18 @@
 .helper {
     display: inline-block; height: 100%; vertical-align: middle;
 }
+
+body {
+    overflow-x: hidden;
+}
+
+/*#first-screen-wrapper, #first-screen-wrapper * {
+    overflow: hidden;
+}
+
+#first-screen-wrapper {
+    z-index: 60;
+}
+#partie-2 {
+    z-index: 61;
+}*/
