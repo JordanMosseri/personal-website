@@ -8,7 +8,7 @@
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!-- build:css(.) styles/vendor.css -->
     <!-- bower:css -->
-    <link rel="stylesheet" href="bower_components/components-font-awesome/css/font-awesome.css" />
+    <link rel="stylesheet" href="../bower_components/components-font-awesome/css/font-awesome.css" />
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
@@ -17,8 +17,7 @@
 
     <link href='styles/Open_Sans_300.css' rel='stylesheet' type='text/css'>
     <link href='styles/Open_Sans_Condensed_300_700.css' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="styles/style.css">
-    <link rel="stylesheet" href="styles/style_new.css">
+    <link rel="stylesheet" href="styles/css/style.css">
     <link rel="stylesheet" type="text/css" media="handheld,screen and (max-width: 680px), screen and (max-device-width: 680px)" href="styles/style_680.css" />
     <link rel="icon" type="image/png" href="images/logo.png" />
 
@@ -45,15 +44,15 @@
 
     <!-- build:js(.) scripts/vendor.js -->
     <!-- bower:js -->
-    <script src="bower_components/jquery/dist/jquery.js"></script>
-    <script src="bower_components/angular/angular.js"></script>
-    <script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap.js"></script>
-    <script src="bower_components/angular-animate/angular-animate.js"></script>
-    <script src="bower_components/angular-cookies/angular-cookies.js"></script>
-    <script src="bower_components/angular-resource/angular-resource.js"></script>
-    <script src="bower_components/angular-route/angular-route.js"></script>
-    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
-    <script src="bower_components/angular-touch/angular-touch.js"></script>
+    <script src="../bower_components/jquery/dist/jquery.js"></script>
+    <script src="../bower_components/angular/angular.js"></script>
+    <script src="../bower_components/bootstrap-sass-official/assets/javascripts/bootstrap.js"></script>
+    <script src="../bower_components/angular-animate/angular-animate.js"></script>
+    <script src="../bower_components/angular-cookies/angular-cookies.js"></script>
+    <script src="../bower_components/angular-resource/angular-resource.js"></script>
+    <script src="../bower_components/angular-route/angular-route.js"></script>
+    <script src="../bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="../bower_components/angular-touch/angular-touch.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -61,14 +60,10 @@
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
         <script src="scripts/app.js"></script>
         <script src="scripts/services/OpeningService.js"></script>
-        <script src="scripts/controllers/main.js"></script>
         <script src="scripts/controllers/about.js"></script>
-        <!-- endbuild -->
-
-    <script>
-      document.getElementById('voile-anim-debut').style.opacity = 1;
-    </script>
-    <script src="scripts/script.js"></script>
+    <script src="scripts/services/tempService.js"></script>
+    <script src="scripts/services/ParallaxCVService.js"></script>
+    <!-- endbuild -->
 
   </body>
 </html>

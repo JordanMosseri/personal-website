@@ -6,3 +6,7 @@
 
 .idea/
 *.iml
+
+/app/styles/css
+/atej
+*.DS_Store

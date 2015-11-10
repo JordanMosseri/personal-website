@@ -14,7 +14,7 @@
  * Controller of the ajs5BisApp
  */
 angular.module('ajs5BisApp')
-	.controller('AboutCtrl', function ($scope, OpeningService) {
+	.controller('AboutCtrl', function ($scope, OpeningService, ParallaxCVService) {
 
 		$scope.iconsSize = 'fa-lg';
 
@@ -65,7 +65,9 @@ angular.module('ajs5BisApp')
 		
 		OpeningService.runWhenReady();
 
-		$('#lien-cv-test-parallax').mouseenter(function(){
+        var couleur_base_text_cv = $('.curriculum-vitae').css('color');
+
+        $('#lien-cv-test-parallax').mouseenter(function(){
 			$('.curriculum-vitae').css('color','orange');
 		}).mouseleave(function(){
 			$('.curriculum-vitae').css('color',couleur_base_text_cv);
@@ -74,7 +76,7 @@ angular.module('ajs5BisApp')
 		//--------------------
 
 		function positionner_bg_parallax() {
-			$('#content-front').css('top', $(window).scrollTop() * 0.25);
+			$('#content-front').css('top', $(window).scrollTop() * 0.25);//0.25//0.6
 		}
 
 		positionner_bg_parallax();
@@ -82,4 +84,6 @@ angular.module('ajs5BisApp')
 		$(window).scroll(function() {
 			positionner_bg_parallax();
 		});
+
+        ParallaxCVService.iniiit();
 	});
