@@ -1,3 +1,4 @@
+$bleu-principal: #697daf;
 
 html, body, div, span, h1, h2, h3, p, td, ul, li, img{
     margin: 0;
@@ -9,7 +10,7 @@ html, body, div, span, h1, h2, h3, p, td, ul, li, img{
 }
 
 div, h1, h2, h3, p{
-    color: #697daf;/*555*/
+    color: $bleu-principal;/*555*/
     font-weight: initial;
 }
 
@@ -28,7 +29,7 @@ body{
 }
 
 .fond-bleu{
-    background: #697daf;
+    background: $bleu-principal;
 }
 .fond-bleu *{
     color:#eee;
@@ -44,15 +45,16 @@ body{
     background:#ddd;/*bleu fonce 283d6f     gris fonce 555*/
 }
 #div-images-gallerie-projets *{
-    color: #697daf;
+    color: $bleu-principal;
 }
 
 a{
     color:orange;
     text-decoration: none;
-}
-a:hover{
+
+  &:hover{
     text-decoration: underline;
+  }
 }
 
 h1{
@@ -75,42 +77,53 @@ h2{
     margin: auto;
 }
 
-#table-specialites img{
+#table-specialites {
+  img{
     width: 25px;
+  }
+
+  ul{
+    text-align: left;
+    margin-left: 32%;
+    list-style-type: circle;
+    list-style-image: url('../../images/tiret.png');
+    list-style-type: none;
+    list-style-image: none;
+    vertical-align: top;
+  }
+
+  td{
+    height: 100%;
+    width:33%;
+    vertical-align: top;
+    padding-top:40px;
+  }
+
+  h3{
+    margin-top:7px;
+  }
 }
 
 table {
     width: 100%;
 }
 
-#table-specialites ul{
-    text-align: left;
-    margin-left: 42%;
-    list-style-type: circle;
-    list-style-image: url('../../images/tiret.png');
-    vertical-align: top;
-}
+#table-confiance {
+  td{
+    //width: 33%;
+  }
 
-#table-specialites td{
-    height: 100%;
-    width:33%;
-    vertical-align: top;
-    padding-top:40px;
-}
-
-#table-specialites h3{
-    margin-top:7px;
-}
-
-#table-confiance td{
-    width: 33%;
-}
-#table-confiance img{
+  img{
     max-height: 50px;
+  }
 }
 
 #table-cv td{
     width:33%;
+}
+
+.fa-li {
+  position: initial;
 }
 
 
@@ -130,20 +143,22 @@ table {
 
 .conteneur-images{
     text-align: left;
-}
-.conteneur-images img{
+
+  img{
     -webkit-transition: opacity 0.5s ease;
-     -moz-transition: opacity 0.5s ease;
-      -ms-transition: opacity 0.5s ease;
-       -o-transition: opacity 0.5s ease;
-          transition: opacity 0.5s ease;
+    -moz-transition: opacity 0.5s ease;
+    -ms-transition: opacity 0.5s ease;
+    -o-transition: opacity 0.5s ease;
+    transition: opacity 0.5s ease;
 
     height: 125px;
     opacity: 0.8;
-}
-.conteneur-images img:hover{
+  }
+
+  img:hover{
     cursor: pointer;
     /*opacity: 1;*/
+  }
 }
 
 #vue-grand, #vue-grand-voile{
@@ -167,13 +182,12 @@ table {
 
 #icones-footer{
     margin: 0 15px;
-}
 
-#icones-footer img{
+  img{
     /*height: 25px;*/
-}
+  }
 
-#icones-footer a{
+  a{
     display:inline-block;
     width:30px;
     height:30px;
@@ -181,8 +195,10 @@ table {
     position:relative;
     top:-5px;
     border-radius: 50%;
+  }
 }
-#icones-footer a, #icones-footer a:hover{
+
+/*#icones-footer a, #icones-footer a:hover{
     background: url('../../images/icones_site_v3_footer.png') no-repeat;
     background-size: auto 60px;
 }
@@ -205,6 +221,25 @@ table {
 
 #icones-footer #lienIn, #icones-footer #lienContact, #icones-footer #lienIn:hover, #icones-footer #lienContact:hover{
     //background-size: auto 30px;
+}*/
+
+#icones-footer {
+  * {
+    color: initial;
+  }
+
+  .fa-stack-2x {
+    color: #eee;
+  }
+  .fa-stack-1x {
+    color: $bleu-principal;
+  }
+
+  .fa-stack:hover {
+    .fa-stack-2x {
+      color: orange;
+    }
+  }
 }
 
 
@@ -242,7 +277,7 @@ table {
 //z-index: 49;
     position: absolute;
     left: 0; top: 0; width: 100%; height: 100%;
-    background: #697daf;
+    background: $bleu-principal;
 }
 #div-arrondi {
 //z-index: 50;
@@ -291,3 +326,17 @@ body {
 #partie-2 {
     z-index: 61;
 }*/
+
+#table-confiance {
+  img {
+    filter: gray; /* IE6-9 */
+    filter: grayscale(1); /* Firefox 35+ */
+    -webkit-filter: grayscale(1); /* Google Chrome, Safari 6+ & Opera 15+ */
+  }
+
+  /* Disable grayscale on hover */
+  img:hover {
+    filter: none;
+    -webkit-filter: grayscale(0);
+  }
+}

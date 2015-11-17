@@ -16,7 +16,7 @@
 angular.module('ajs5BisApp')
 	.controller('AboutCtrl', function ($scope, OpeningService, ParallaxCVService) {
 
-		$scope.iconsSize = 'fa-lg';
+		$scope.iconsSize = 'fa-3x';
 
 		function recup(chemin_dossier){
 			var descr_audi = 'Modelisation-texturage-rendu avec Blender 3D - Projet personnel';
@@ -41,7 +41,7 @@ angular.module('ajs5BisApp')
 			];
 		}
 
-		$scope.$arr = recup("images/Images/miniatures/");
+		$scope.arr = recup("../PORTFOLIO/miniatures/");
 
 		$scope.model = {
 			name: 'Jordan Mosseri.',
@@ -59,9 +59,16 @@ angular.module('ajs5BisApp')
 
 		$scope.skills = [
 			new_SkillsGroup('fa-mobile', 'Mobile', ['Android', 'iOS']),
-			new_SkillsGroup('fa-globe', 'Web', ['AngularJS', 'jQuery', 'PHP', 'JEE', 'Joomla']),
+			new_SkillsGroup('fa-desktop', 'Web', ['AngularJS', 'jQuery', 'PHP', 'JEE', 'Joomla']),
 			new_SkillsGroup('fa-cube', 'Infographisme', ['Blender 3D', 'Photoshop'])
 		];
+
+        $scope.trusts = [
+            {image: 'images/confiance/orig/logo-ece.png', link: ''},
+            {image: 'images/confiance/orig/logo-No-Larsen.jpg', link: ''},
+            {image: 'images/confiance/orig/logo_naxis.png', link: ''},
+            {image: 'images/confiance/orig/logo-excilys-v2.png', link: ''}
+        ];
 		
 		OpeningService.runWhenReady();
 
@@ -76,7 +83,10 @@ angular.module('ajs5BisApp')
 		//--------------------
 
 		function positionner_bg_parallax() {
-			$('#content-front').css('top', $(window).scrollTop() * 0.25);//0.25//0.6
+			$('#content-front').css('top', $(window).scrollTop() * 0.45);//0.25//0.6
+            var res = ($(window).height() - $(window).scrollTop())/$(window).height();
+            res = res < 0? 0 : res;
+            $('#content-front').css({opacity: res});
 		}
 
 		positionner_bg_parallax();

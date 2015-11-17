@@ -132,6 +132,13 @@ angular.module('ajs5BisApp')
         }
 
         function inn() {
+            var res = ($(window).height() - $(window).scrollTop())/$(window).height();
+            if(res < 0.75) {
+                setTimeout(function() {
+                    out();
+                }, DURATIONS_DOWN_ARROW);
+                return;
+            }
             $('#bottom-arrow *').animate({opacity: 1, top: '10px'}, DURATIONS_DOWN_ARROW*0.85, function() {
                 setTimeout(function() {
                     out();

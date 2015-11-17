@@ -59,6 +59,7 @@
         <td ng-repeat="skill in skills">
           <ul>
             <li ng-repeat="item in skill.content">
+                <i class="fa-li fa fa-angle-right"></i>
               {{item}}
             </li>
           </ul>
@@ -73,7 +74,7 @@
     <h2 class="">Véhiculer des images</h2>
     <p class="conteneur-images">
 
-      <a ng-repeat="$value in $arr" href="{{$value[0].replace('miniatures', 'grandes')}}" style="display:inline-block; background: black; height:125px;line-height:125px;">
+      <a ng-repeat="$value in arr" href="{{$value[0].replace('miniatures', 'grandes')}}" style="display:inline-block; background: black; height:125px;line-height:125px;">
         <img class="cliquable-a-agrandir" src="{{$value[0]}}"/>
         <span style="display:none;">{{$value[1]}}</span>
       </a>
@@ -117,10 +118,11 @@
     <p>
     <table id="table-confiance">
       <tr>
-        <td><img src="images/confiance/logo-ece.png"/></td>
-        <td><img src="images/confiance/logo-No-Larsen.jpg" style="max-height: 75px;"/></td>
-        <td><img src="images/confiance/logo_naxis.png"/></td>
-          <td>Excilys</td>
+        <td ng-repeat="trust in trusts">
+            <a href="{{trust.link}}">
+                <img src="{{trust.image}}"/>
+            </a>
+        </td>
       </tr>
     </table>
     </p>
@@ -132,16 +134,36 @@
     <p style="font-style: italic;margin:0;">
       Jordan Mosseri &copy; Tous droits réservés
       <span id="icones-footer">
-          <a id="lienIn" href="http://fr.linkedin.com/pub/jordan-mosseri/63/170/7b5" target="_blank"><img src="images/blank.png" alt="logo_in" /></a>
+          <a id="lienIn" href="http://fr.linkedin.com/pub/jordan-mosseri/63/170/7b5" target="_blank">
+              <span class="fa-stack fa-lg">
+                  <i class="fa fa-circle fa-stack-2x"></i>
+                  <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+                </span>
+          </a>
           <!-- http://www.linkedin.com/profile/view?id=224343929 -->
-          <a id="lienContact" href="mailto:mosseri@ece.fr"><img src="images/blank.png" alt="icon mail" /></a>
-          <a>Github</a>
+          <a id="lienContact" href="mailto:mosseri@ece.fr">
+              <span class="fa-stack fa-lg">
+                  <i class="fa fa-circle fa-stack-2x"></i>
+                  <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+                </span>
+          </a>
+          <a href="http://github.com/JordanMosseri">
+              <span class="fa-stack fa-lg">
+                  <i class="fa fa-circle fa-stack-2x"></i>
+                  <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                </span>
+          </a>
       </span>
     </p>
-      AngularJS
+      <!--AngularJS-->
   </div>
 </div>
 
+<div style="position: fixed;top: 0; right: 0; background: #697daf; color: #eed69c; font-weight: bold;
+padding-left: 5px; width: 100%; text-align: right;">
+    <i class="fa fa-info-circle"></i>
+    Site en cours de refonte/développement. Dernière mise à jour le 15 nov 2015.
+</div>
 
 <noscript>
   <style>
