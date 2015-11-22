@@ -340,3 +340,17 @@ body {
     -webkit-filter: grayscale(0);
   }
 }
+
+#bottom-arrow {
+  position: absolute;
+  bottom: 2%;
+  width: 100%;
+  color: #ddd;
+  text-align: center;
+  font-size: 1.5em;
+}
+
+#first-screen-wrapper {
+  width: 100%;
+}
+

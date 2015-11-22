@@ -14,7 +14,7 @@
  * Controller of the ajs5BisApp
  */
 angular.module('ajs5BisApp')
-	.controller('AboutCtrl', function ($scope, OpeningService, ParallaxCVService) {
+	.controller('AboutCtrl', ['$scope', 'OpeningService', 'ParallaxCVService', function ($scope, OpeningService, ParallaxCVService) {
 
 		$scope.iconsSize = 'fa-3x';
 
@@ -96,4 +96,4 @@ angular.module('ajs5BisApp')
 		});
 
         ParallaxCVService.iniiit();
-	});
+	}]);

@@ -98,12 +98,12 @@ var gutil = require('gulp-util'),
 // Uglification
 var //uglify = require('gulp-uglify'),
     sourcemaps = require('gulp-sourcemaps'),
-    ngAnnotate = require('gulp-ng-annotate'),
+    //ngAnnotate = require('gulp-ng-annotate'),
 // Minification
     usemin = require('gulp-usemin'),
     minifycss = require('gulp-minify-css'),
-    minifyhtml = require('gulp-minify-html'),
-    autoprefixer = require('gulp-autoprefixer');
+    minifyhtml = require('gulp-minify-html');
+    //autoprefixer = require('gulp-autoprefixer');
 
 // Paths
 var baseDir = 'app/',
@@ -124,8 +124,8 @@ var viewsDir = 'views/',
     index = 'index.html';
 var webserviceHost = 'var WEBSERVICE_HOST = "pre-capico.excilys.com";';
 var webserviceHostProd = 'var WEBSERVICE_HOST = "capico.excilys.com";';
-var p = require('../package.json');
-var version = 'var CAPICO_VERSION = "' + p.version + '" ;';
+//var p = require('../package.json');
+//var version = 'var CAPICO_VERSION = "' + p.version + '" ;';
 var size = require('gulp-size'),
     newer = require('gulp-newer'),
     del = require('del'),
@@ -134,13 +134,15 @@ var size = require('gulp-size'),
     //runSequence = require('run-sequence'),
     replace = require('gulp-replace'),
     insert = require('gulp-insert');
+var using = require("gulp-using");
 
 
 // Minification options
 var htmlOpts = {
         conditionals: true,
         spare: true,
-        empty: true
+        empty: true,
+        quotes: true
     },
     cssOpts = {
         benchmark: 1,
@@ -162,12 +164,32 @@ gulp.task('zip', function () {
         .pipe(size({title: 'zipped'}));
 });
 
+gulp.task('copy-font-css', function () {
+    return gulp.src(baseDir + 'styles/*.css')
+        .pipe(gulp.dest(buildDir + 'styles'));
+});
+
+gulp.task('copy-my-css', function () {
+    return gulp.src(baseDir + 'styles/css/*.css')
+        .pipe(gulp.dest(buildDir + 'styles/css'));
+});
+
+gulp.task('copy-imgs', function () {
+    return gulp.src(baseDir + 'images/**')
+        .pipe(gulp.dest(buildDir + 'images'));
+});
+
 gulp.task('package', ['clean'], function () {
     runSequence(
         'html-index',
         [//'html-shared-partials',
-            'html-partials', /*'pictures-shared', 'pictures'*/, //'i18n',
-            'bootstrap-map', 'font-awesome'/*, 'fonts', 'pdfWorker'*/],
+            'html-partials', //'pictures-shared', 'pictures'
+            //'i18n',
+            'bootstrap-map', 'font-awesome'//, 'fonts', 'pdfWorker'
+            , 'copy-font-css'
+            , 'copy-my-css'
+            , 'copy-imgs'
+        ],
         'zip'
     );
 });
@@ -175,24 +197,25 @@ gulp.task('package', ['clean'], function () {
 // Uglification & minification & lint
 gulp.task('html-index', ['css-replace'], function () {
     return gulp.src(baseDir + index)
+        .pipe(replace('href="../bower_components', 'href="bower_components'))
         .pipe(usemin({
             js: [
                 'concat',
                 size({title: 'non minified vendor.js size'}),
-                uglify(),
+                uglify({mangle: false}),
                 //rev(),
                 size({title: 'minified vendor.js size'})
             ],
-            /*jsApp: [
-                sourcemaps.init(),
+            jsApp: [
+                //sourcemaps.init(),
                 'concat',
-                ngAnnotate(),
+                //ngAnnotate(),
                 size({title: 'non minified app.js size'}),
                 uglify(),
                 //rev(),
-                sourcemaps.write('./'),
+                //sourcemaps.write('./'),
                 size({title: 'minified app.js size'})
-            ],*/
+            ],
             css: [
                 'concat',
                 size({title: 'non minified style.css'}),
@@ -238,16 +261,16 @@ gulp.task('font-awesome', function () {
         .pipe(size({title: 'font-awesome copied'}));
 });
 
-gulp.task('default', ['build-css'], function(){
+gulp.task('default', ['sass'], function(){
 });
 
 // Sass compilation
 gulp.task('sass-comp-kids',  function () {
-    return gulp.src(baseDir + sassDir + '**/*.scss')
+    return gulp.src('app/styles/sass/*.scss')
         .pipe(sass({style: 'compressed'}))
         .on('error', sass.logError)
         //.pipe(autoprefixer('last 2 versions'))
-        .pipe(gulp.dest(baseDir + cssDir))
+        .pipe(gulp.dest('app/styles/css'))
         .pipe(size());
 });
 
@@ -260,10 +283,8 @@ gulp.task('sass-comp-kids',  function () {
         .pipe(size());
 });*/
 
-gulp.task('build-css', ['sass-comp-kids', 'sass-comp-shared']);
-
 // Css replaces for built version
-gulp.task('css-replace', ['build-css'], function () {
+gulp.task('css-replace', ['sass'], function () {
     var srcDir = baseDir + '**/*.css';
     return gulp.src(srcDir)
         .pipe(replace('\'/', '\'../'))
